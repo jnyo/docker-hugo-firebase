@@ -27,7 +27,7 @@ for i in "${!sortedHugoVersions[@]}"; do
 	[[ -d "$versionShort" ]] || mkdir "hugo/$versionShort"
 
 	# on MacOS replace '-r' to '-E' or use 'gsed' instead of 'sed'
-	sed -E 's!%%HUGO_VERSION%%!'"$version"'!g' "Dockerfile.template" > "hugo/$versionShort/Dockerfile"
+	sed -r 's!%%HUGO_VERSION%%!'"$version"'!g' "Dockerfile.template" > "hugo/$versionShort/Dockerfile"
 
 	string="$string -f hugo/$versionShort/Dockerfile"
 	if [[ $i == 0 ]]; then
